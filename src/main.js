@@ -1,1 +1,3 @@
-console.log(22)
+import Presenter from './presenter/trip-presenter.js';
+
+new Presenter().init();
