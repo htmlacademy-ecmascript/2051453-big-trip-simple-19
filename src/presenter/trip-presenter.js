@@ -1,21 +1,24 @@
-import { NewTaskFormView } from '../view/create-form.js';
-import { NewTaskEditFormView } from '../view/editing-form.js';
-import { NewTaskFilterView } from '../view/filter.js';
-import { NewTaskSortView } from '../view/sort';
-import { NewTaskWaypointView } from '../view/waypoint.js';
 import { render, RenderPosition } from '../render.js';
+import FilterView from '../view/filter.js';
+import SortView from '../view/sort.js';
+import EditingPointView from '../view/editing-point.js';
+import PointView from '../view/point.js';
+// import CreatePointView from '../view/create-point.js';
 
-const filterContainer = document.querySelector('.trip-controls__filters');
-const pointsContainer = document.querySelector('.trip-events');
+export default class TripPresenter {
 
-export default class Presenter {
+  constructor(filtersPosition, containerPosition, pointModel) {
+    this.filtersPosition = filtersPosition;
+    this.containerPosition = containerPosition;
+    this.pointModel = pointModel;
+  }
+
   init() {
-    render(new NewTaskFilterView, filterContainer, RenderPosition.AFTERBEGIN);
-    render(new NewTaskSortView, pointsContainer, RenderPosition.AFTERBEGIN);
-    render(new NewTaskFormView(), pointsContainer, RenderPosition.BEFOREEND);
-    for (let i = 0; i < 3; i++) {
-      render(new NewTaskWaypointView(), pointsContainer, RenderPosition.BEFOREEND);
-    }
-    render(new NewTaskEditFormView(), pointsContainer, RenderPosition.BEFOREEND);
+    this.points = [...this.pointModel.getPoints()];
+    this.offersByType = [...this.pointModel.getOffersByType()];
+    render(new FilterView(), this.filtersPosition, RenderPosition.AFTERBEGIN);
+    render(new SortView(), this.containerPosition, RenderPosition.AFTERBEGIN);
+    render(new EditingPointView(this.points[4], this.offersByType), this.containerPosition, RenderPosition.BEFOREEND);
+    this.points.forEach((point) => render(new PointView(point), this.containerPosition, RenderPosition.BEFOREEND));
   }
 }
