@@ -1,8 +1,9 @@
 import { createElement } from '../render.js';
 
-function createNewSortTemplate(){
-  return (
-    `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
+export default class SortView {
+  createNewSortTemplate() {
+    return (
+      `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
     <div class="trip-sort__item  trip-sort__item--day">
       <input id="sort-day" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-day" checked>
       <label class="trip-sort__btn" for="sort-day">Day</label>
@@ -28,25 +29,22 @@ function createNewSortTemplate(){
       <label class="trip-sort__btn" for="sort-offer">Offers</label>
     </div>
   </form>`
-  );
-}
+    );
+  }
 
-class NewTaskSortView {
-  getTemplate(){
-    return createNewSortTemplate();
+  getTemplate() {
+    return this.createNewSortTemplate();
   }
 
   getElement() {
-    if (!this.element){
+    if (!this.element) {
       this.element = createElement(this.getTemplate());
     }
 
     return this.element;
   }
 
-  removeElement(){
+  removeElement() {
     this.element = null;
   }
 }
-
-export {NewTaskSortView};
