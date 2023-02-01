@@ -11,3 +11,4 @@ const offersByType = getOffersByType();
 const tripModel = new TripModel({points, destinations, offers, offersByType});
 const tripPresenter = new TripPresenter(filtersPosition, containerPosition, tripModel);
 tripPresenter.init();
+

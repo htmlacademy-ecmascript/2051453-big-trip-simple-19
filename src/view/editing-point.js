@@ -1,12 +1,14 @@
 import { createElement } from '../render.js';
-import { OFFERS_TYPE } from '../const.js';
-import { formatFullData } from '../utils.js';
+import { OFFERS_TYPE } from '../model/const.js';
+import { formatFullData } from '../model/data.js';
 
 export default class EditingpointView {
+  #point = null;
+  #offersByType = null;
 
   constructor(point, offersByType) {
-    this.point = point;
-    this.offersByType = offersByType;
+    this.#point = point;
+    this.#offersByType = offersByType;
   }
 
   createEventTypeTemplate(pointType) {
@@ -105,11 +107,11 @@ export default class EditingpointView {
   }
 
 
-  getTemplate(point, offersByType) {
-    return this.createEditPointTemplate(point, offersByType);
+  get Template() {
+    return this.createEditPointTemplate(this.#point, this.#offersByType);
   }
 
-  getElement() {
+  get Element() {
     if (!this.element) {
       return createElement(this.getTemplate(this.point, this.offersByType));
     } else {

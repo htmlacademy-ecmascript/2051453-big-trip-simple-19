@@ -1,9 +1,11 @@
 import { createElement } from '../render.js';
-import { formatDayData, formatTime } from '../utils.js';
+import { formatDayData, formatTime } from '../model/data.js';
 
 export default class PointView {
+
+  #point = null;
   constructor(point) {
-    this.point = point;
+    this.#point = point;
   }
 
   createOffersListTemplate(point) {
@@ -46,19 +48,19 @@ export default class PointView {
   }
 
 
-  getTemplate(point) {
-    return this.createPointTemplate(point);
+  get Template() {
+    return this.createPointTemplate(this.#point);
   }
 
-  getElement() {
+  get Element() {
     if (!this.element) {
-      return createElement(this.getTemplate(this.point));
+      return createElement(this.getTemplate(this.#point));
     } else {
       return this.element;
     }
   }
 
-  deleteElement() {
+  removeElement() {
     this.element = null;
   }
 }
