@@ -107,11 +107,11 @@ export default class EditingpointView {
   }
 
 
-  get Template() {
+  get template() {
     return this.createEditPointTemplate(this.#point, this.#offersByType);
   }
 
-  get Element() {
+  get element() {
     if (!this.element) {
       return createElement(this.getTemplate(this.point, this.offersByType));
     } else {

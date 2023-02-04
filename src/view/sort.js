@@ -32,11 +32,11 @@ export default class SortView {
     );
   }
 
-  getTemplate() {
+  get template() {
     return this.createNewSortTemplate();
   }
 
-  getElement() {
+  get element() {
     if (!this.element) {
       this.element = createElement(this.getTemplate());
     }
