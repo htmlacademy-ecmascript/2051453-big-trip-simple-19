@@ -48,11 +48,11 @@ export default class PointView {
   }
 
 
-  get Template() {
+  get template() {
     return this.createPointTemplate(this.#point);
   }
 
-  get Element() {
+  get element() {
     if (!this.element) {
       return createElement(this.getTemplate(this.#point));
     } else {

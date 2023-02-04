@@ -174,11 +174,11 @@ export default class CreatePointView {
     );
   }
 
-  get Template(){
+  get template(){
     return this.createFormTemplate();
   }
 
-  get Element() {
+  get element() {
     if (!this.element){
       this.element = createElement(this.getTemplate());
     }
