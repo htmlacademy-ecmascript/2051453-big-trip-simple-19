@@ -3,6 +3,7 @@ import FilterView from '../view/filter.js';
 import SortView from '../view/sort.js';
 import PointView from '../view/point.js';
 
+
 export default class TripPresenter {
 
   #filtersPosition = null;
