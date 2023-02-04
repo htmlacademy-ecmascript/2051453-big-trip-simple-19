@@ -1,10 +1,12 @@
 import { createElement } from '../render.js';
 
 export default class CreatePointView {
+  #point = null;
+  #offersByType = null;
 
   constructor(point, offersByType) {
-    this.point = point;
-    this.offersByType = offersByType;
+    this.#point = point;
+    this.#offersByType = offersByType;
   }
 
   createFormTemplate() {
@@ -172,11 +174,11 @@ export default class CreatePointView {
     );
   }
 
-  getTemplate(){
+  get Template(){
     return this.createFormTemplate();
   }
 
-  getElement() {
+  get Element() {
     if (!this.element){
       this.element = createElement(this.getTemplate());
     }

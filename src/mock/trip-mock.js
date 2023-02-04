@@ -1,4 +1,4 @@
-import { getRandomElement, getRandomNumber } from '../utils.js';
+import { getRandomElement, getRandomNumber } from '../mock/utils.js';
 
 const PICTURES_DISCRIPTION_MOCK = ['for the arthas!','Im lich king','for Azerot', 'love to play warcraft3', 'big trip simple'];
 

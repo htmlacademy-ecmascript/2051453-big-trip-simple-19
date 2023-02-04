@@ -7,18 +7,34 @@ import PointView from '../view/point.js';
 
 export default class TripPresenter {
 
+  #filtersPosition = null;
+  #containerPosition = null;
+  #pointModel = null;
+
+  #points = [];
+  #offersByType = [];
+
+  // #renderPoint(point) {
+  //   const pointComponent = new PointView({point});
+  //   const pointEditComponent = new EditingPointView({point});
+
+  // //   const replacePointToForm = () => {
+
+  // //   }
+  // // }
+
   constructor(filtersPosition, containerPosition, pointModel) {
-    this.filtersPosition = filtersPosition;
-    this.containerPosition = containerPosition;
-    this.pointModel = pointModel;
+    this.#filtersPosition = filtersPosition;
+    this.#containerPosition = containerPosition;
+    this.#pointModel = pointModel;
   }
 
   init() {
-    this.points = [...this.pointModel.getPoints()];
-    this.offersByType = [...this.pointModel.getOffersByType()];
-    render(new FilterView(), this.filtersPosition, RenderPosition.AFTERBEGIN);
-    render(new SortView(), this.containerPosition, RenderPosition.AFTERBEGIN);
-    render(new EditingPointView(this.points[4], this.offersByType), this.containerPosition, RenderPosition.BEFOREEND);
-    this.points.forEach((point) => render(new PointView(point), this.containerPosition, RenderPosition.BEFOREEND));
+    this.#points = [...this.#pointModel.points];
+    this.#offersByType = [...this.#pointModel.offersByType];
+    render(new FilterView(), this.#filtersPosition, RenderPosition.AFTERBEGIN);
+    render(new SortView(), this.#containerPosition, RenderPosition.AFTERBEGIN);
+    // render(new EditingPointView(this.#points[4], this.#offersByType), this.#containerPosition, RenderPosition.BEFOREEND);
+    this.#points.forEach((point) => render(new PointView(point), this.#containerPosition, RenderPosition.BEFOREEND));
   }
 }
