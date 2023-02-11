@@ -15,11 +15,6 @@ const dateTimeTo = (dateTo) => dateTo ? dayjs(dateTo).format(TIME_FORMAT) : '';
 const dayDate = (dateFrom) => dateFrom ? dayjs(dateFrom).format(DAY_FORMAT) : '';
 const machineDayDate = (dateFrom) => dateFrom ? dayjs(dateFrom).format(MACHINE_DAY_FORMAT) : '';
 
-
-const getRandomArrayElement = (items) => items[Math.floor(Math.random() * items.length)];
-
-const getRandom = (items) => items[Math.floor(Math.random() * items.length)];
-
 const sortPointDay = (pointA, pointB) => dayjs(pointA.dateFrom).diff(dayjs(pointB.dateFrom));
 
 const sortPointPrice = (pointA, pointB) => pointB.basePrice - pointA.basePrice;
@@ -30,4 +25,4 @@ const firstLetterUp = (item) => {
   return item[0].toUpperCase() + item.slice(1);
 };
 
-export {getRandomArrayElement, getRandom, fullDateFrom, fullDateTo, dateTimeFrom, dateTimeTo, dayDate, machineDayDate, machineDateTimeFrom, machineDateTimeTo, sortPointDay, sortPointPrice, firstLetterUp};
+export {fullDateFrom, fullDateTo, dateTimeFrom, dateTimeTo, dayDate, machineDayDate, machineDateTimeFrom, machineDateTimeTo, sortPointDay, sortPointPrice, firstLetterUp};
