@@ -21,31 +21,6 @@ export default class PointsModel extends Observable {
     this.#pointsApiService = pointsApiService;
   }
 
-  #getOfferByTypes = (point) => {
-    const offerByTypes = this.#offersByTypes.find((offer) => offer.type === point.type);
-    return { offerByTypes };
-  };
-
-  #getDestination = (point) => {
-    const destination = this.#destinations.find((direction) => direction.id === point.destination);
-    return { destination };
-  };
-
-  #adaptToClient(point) {
-    const adaptedPoint = {
-      ...point,
-      basePrice: point['base_price'],
-      dateFrom: new Date(point['date_from']),
-      dateTo: new Date(point['date_to']),
-    };
-
-    delete adaptedPoint['base_price'];
-    delete adaptedPoint['date_from'];
-    delete adaptedPoint['date_to'];
-
-    return adaptedPoint;
-  }
-
   get points() {
     return this.#points.map((point) => {
       const offerByTypes = this.#getOfferByTypes(point).offerByTypes;
@@ -78,6 +53,30 @@ export default class PointsModel extends Observable {
     };
   }
 
+  #getOfferByTypes = (point) => {
+    const offerByTypes = this.#offersByTypes.find((offer) => offer.type === point.type);
+    return { offerByTypes };
+  };
+
+  #getDestination = (point) => {
+    const destination = this.#destinations.find((direction) => direction.id === point.destination);
+    return { destination };
+  };
+
+  #adaptToClient(point) {
+    const adaptedPoint = {
+      ...point,
+      basePrice: point['base_price'],
+      dateFrom: new Date(point['date_from']),
+      dateTo: new Date(point['date_to']),
+    };
+
+    delete adaptedPoint['base_price'];
+    delete adaptedPoint['date_from'];
+    delete adaptedPoint['date_to'];
+
+    return adaptedPoint;
+  }
 
   async init() {
     try {
